@@ -1,6 +1,19 @@
 #!/usr/bin/env ruby
 # coding: utf-8
 # © 2014 Chris Riddoch.  See LICENSES for terms
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'set'
 require 'memoize'
@@ -8,7 +21,7 @@ include Memoize
 
 def provider_of(name)
   return Set.new if name.empty?
-  cmd = ["/usr/bin/zypper", "--no-refresh", "search", "--match-exact","--provides", name]
+  cmd = ["/usr/bin/zypper", "--no-refresh", "search", "--match-exact", "--provides", name]
   IO.popen(cmd, 'r') {|io|
     l =  io.readlines
     io.close
@@ -59,6 +72,9 @@ memoize(:requirements_of, "requirements.cache")
 memoize(:graph_requirements_of, "recursive_requirements.cache")
 
 def usage
+  puts "    #{$0}  Copyright © 2014  Chris Riddoch"
+  puts "    This program comes with ABSOLUTELY NO WARRANTY; for details see 'LICENSE'."
+  puts "    This is free software, and you are welcome to redistribute it under certain conditions."
   puts "Usage: #{$0} <packagename>"
   exit
 end

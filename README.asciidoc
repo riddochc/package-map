@@ -1,0 +1,93 @@
+Package-map
+===========
+Chris Riddoch <riddochc@gmail.com>
+0.1, 2014-02-11
+
+== DESCRIPTION ==
+
+Package-map creates a PDF visualizing package dependencies in OpenSUSE, or any
+other distribution using zypper for package management.
+
+== SYNOPSIS ==
+
+package-map.rb <packagename>
+
+== REQUIREMENTS ==
+
+* Ruby.
+** This was tested with 2.0.0-p389, but will probably work with 1.9.3 as well.
+** Available from your built-in package manager, or http://www.ruby-lang.org/
+* Graphviz.
+** This was tested with version 2.28.0 (20130927.2339), should work with any recent version.
+** Available from http://www.graphviz.org/
+* Memoize gem.
+** This was tested with a gem built from the git checkout at 'memoize-1.3.1-5-gca100ca'
+** Available from https://github.com/djberg96/memoize
+
+== INSTALL ==
+
+No installation is necessary, the program can be used where downloaded.  Future
+versions will be installable with 'gem install package-map'
+
+== USAGE DETAILS ==
+
+Provide the name of the package you would like to begin a search from.  This
+program may take a significant amount of time to run, as a result of executing
+zypper repeatedly.  Please be patient, no output will be produced on success.
+
+Several files will be created in your current working directory, which can be
+used to speed up future searches by temporarily storing results between runs
+of the program.  You may freely delete these, at the cost of future runs needing
+to run zypper more times, taking longer:
+
+* providers.cache
+* recursive_requirements.cache
+* requirements.cache
+
+Two more files will be created when package-map is finished running:
+
+<packagename>_requirements.gv
+<packagemap>_graph.pdf
+
+The first file describes the graph to be drawn, and the pdf is the result of
+running it through Graphviz.
+
+If the graph is unusually large, you may find tulip, at http://www.tulip-software.org
+to be more appropriate than Graphviz.  Tulip can import the .gv data file produced
+by package-map without changes.
+
+If you know of other graph visualization tools well-suited to consuming this data, send
+me an email and I can include a reference to it in this documentation.
+
+== CONTRIBUTING ==
+
+This is free software!  Fork this project on Github and send a pull-request, or
+email me a patch file.
+
+I would appreciate, but don't require, joint copyright ownership of contributions.
+If I accept a patch without the assignment of at least some amount of copyright,
+it precludes being able to grant custom licensing as appropriate, which is one
+means for developers to be fairly compensated for their work on free software.
+Note that the FSF, and many non-FSF projects, require complete copyright transfer
+of all contributions!
+ 
+== LICENSE ==
+
+Copyright © 2014 Chris Riddoch riddochc@gmail.com
+
+If you would like different licensing arrangements than what is described
+here, contact me to discuss the matter via the email address listed above.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
