@@ -46,8 +46,8 @@ to run zypper more times, taking longer:
 
 Two more files will be created when package-map is finished running:
 
-<packagename>_requirements.gv
-<packagemap>_graph.pdf
+* <packagename>_requirements.gv
+* <packagemap>_graph.pdf
 
 The first file describes the graph to be drawn, and the pdf is the result of
 running it through Graphviz.
